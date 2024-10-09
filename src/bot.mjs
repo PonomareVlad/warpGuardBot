@@ -1,17 +1,13 @@
-import {Bot} from "grammy";
+import { Bot } from 'grammy'
+import { checkWgIsInstalled } from 'wireguard-tools'
 
 export const {
+  TELEGRAM_BOT_TOKEN: token,
+  TELEGRAM_SECRET_TOKEN: secretToken = String(token).split(':').pop(),
+} = process.env
 
-    // Telegram bot token from t.me/BotFather
-    TELEGRAM_BOT_TOKEN: token,
+export const bot = new Bot(token)
+const safe = bot.errorBoundary(console.error)
 
-    // Secret token to validate incoming updates
-    TELEGRAM_SECRET_TOKEN: secretToken = String(token).split(":").pop()
-
-} = process.env;
-
-// Default grammY bot instance
-export const bot = new Bot(token);
-
-// Sample handler for a simple echo bot
-bot.on("message:text", ctx => ctx.reply(ctx.msg.text));
+safe.command('version', async ctx => ctx.reply(await checkWgIsInstalled()))
+safe.on('message:text', ctx => ctx.reply(ctx.msg.text))

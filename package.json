@@ -14,6 +14,10 @@
   },
   "dependencies": {
     "grammy": "^1.30.0",
-    "vercel-grammy": "^1.0.0"
+    "vercel-grammy": "^1.0.0",
+    "wireguard-tools": "^0.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }
