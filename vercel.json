@@ -1,5 +1,5 @@
 {
-  "installCommand": "install.sh",
+  "installCommand": "./install.sh",
   "functions": {
     "api/**/*": {
       "includeFiles": "bin/**/*"
