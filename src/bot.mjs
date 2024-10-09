@@ -63,7 +63,7 @@ safe.command('start', async ctx => {
     method: 'PATCH',
     headers,
   }).then(response => response.json())
-  const { port, hostname } = new URL(`https://${host}`)
+  const { port } = new URL(`https://${host}`)
   const config = generateConfigString({
     wgInterface: {
       privateKey,
@@ -79,7 +79,7 @@ safe.command('start', async ctx => {
       {
         publicKey: public_key,
         allowedIps: ['0.0.0.0/1', '128.0.0.0/1', '::/1', '8000::/1'],
-        endpoint: `${hostname}:${port}`,
+        endpoint: `162.159.193.5:${port}`,
       },
     ],
   }).replace(
