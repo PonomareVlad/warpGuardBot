@@ -1,5 +1,5 @@
 import { Bot } from 'grammy'
-import { exec } from 'wireguard-tools/dist/utils/exec.js'
+import { checkWgIsInstalled } from 'wireguard-tools'
 
 export const {
   TELEGRAM_BOT_TOKEN: token,
@@ -9,7 +9,5 @@ export const {
 export const bot = new Bot(token)
 const safe = bot.errorBoundary(console.error)
 
-safe.command('ls', async ctx => ctx.reply(await exec('ls')))
-safe.command('pwd', async ctx => ctx.reply(await exec('pwd')))
-safe.command('version', async ctx => ctx.reply(await exec('wg -v')))
+safe.command('version', async ctx => ctx.reply(await checkWgIsInstalled()))
 safe.on('message:text', ctx => ctx.reply(ctx.msg.text))
