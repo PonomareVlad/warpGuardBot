@@ -1,11 +1,7 @@
-import {
-  generateKeyPair,
-  checkWgIsInstalled,
-  generateConfigString,
-} from 'wireguard-tools'
 import { promises } from 'node:dns'
 import { Buffer } from 'node:buffer'
-import { Bot, InputFile } from 'grammy'
+import { Bot, InlineKeyboard, InputFile } from 'grammy'
+import { generateKeyPair, generateConfigString } from 'wireguard-tools'
 
 export const {
   CLOUDFLARE_API_URL: api,
@@ -21,8 +17,6 @@ const defaultHeaders = new Headers({
 export const bot = new Bot(token)
 
 const safe = bot.errorBoundary(console.error)
-
-safe.command('version', async ctx => ctx.reply(await checkWgIsInstalled()))
 
 safe.command('start', async ctx => {
   await ctx.replyWithChatAction('upload_document')
@@ -81,6 +75,25 @@ safe.command('start', async ctx => {
     ],
   })
   const file = new InputFile(Buffer.from(config), 'WARP.conf')
-  await ctx.replyWithDocument(file)
-  await ctx.reply('https://docs.amnezia.org/ru/documentation/amnezia-wg')
+  const { message_id } = await ctx.replyWithDocument(file)
+  await ctx.reply(
+    'Установите приложение для вашей системы и откройте этот файл с помощью него',
+    {
+      reply_parameters: { message_id },
+      reply_markup: new InlineKeyboard()
+        .url(
+          'Для Android в Google Play',
+          'https://play.google.com/store/apps/details?id=org.amnezia.awg&hl=en_SG&gl=US'
+        )
+        .url(
+          'Для IOS в AppStore',
+          'https://apps.apple.com/pl/app/amneziawg/id6478942365'
+        )
+        .url(
+          'Для Windows на Github',
+          'https://github.com/amnezia-vpn/amneziawg-windows-client/releases/tag/1.0.0'
+        )
+        .toFlowed(1),
+    }
+  )
 })
