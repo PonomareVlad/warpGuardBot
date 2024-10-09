@@ -7,7 +7,7 @@ index b47b764..06027e8 100644
          switch (_d.label) {
              case 0:
 -                promise = execute(command);
-+                promise = execute("PATH=$PATH:/var/task/bin " + command);
++                promise = execute("export PATH=$PATH:/var/task/bin && " + command);
                  child = promise.child;
                  if (opts) {
                      onData_1 = opts.onData, onError_1 = opts.onError, onClose_1 = opts.onClose;
