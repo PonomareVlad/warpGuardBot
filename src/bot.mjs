@@ -110,7 +110,7 @@ H4 = 4
           'https://play.google.com/store/apps/details?id=org.amnezia.awg&hl=en_SG&gl=US'
         )
         .url(
-          'Для iOS в AppStore',
+          'Для iOS и macOS в AppStore',
           'https://apps.apple.com/pl/app/amneziawg/id6478942365'
         )
         .url(
