@@ -3,6 +3,7 @@ import {
   checkWgIsInstalled,
   generateConfigString,
 } from 'wireguard-tools'
+import { promises } from 'node:dns'
 import { Buffer } from 'node:buffer'
 import { Bot, InputFile } from 'grammy'
 
@@ -63,7 +64,8 @@ safe.command('start', async ctx => {
     method: 'PATCH',
     headers,
   }).then(response => response.json())
-  const { port } = new URL(`https://${host}`)
+  const { hostname, port } = new URL(`https://${host}`)
+  const [adress] = await promises.resolve4(hostname)
   const config = generateConfigString({
     wgInterface: {
       privateKey,
@@ -79,28 +81,10 @@ safe.command('start', async ctx => {
       {
         publicKey: public_key,
         allowedIps: ['0.0.0.0/1', '128.0.0.0/1', '::/1', '8000::/1'],
-        endpoint: `162.159.193.5:${port}`,
+        endpoint: `${adress}:${port}`,
       },
     ],
-  }).replace(
-    `
-
-[Peer]
-`,
-    `
-S1 = 0
-S2 = 0
-Jc = 120
-Jmin = 23
-Jmax = 911
-H1 = 1
-H2 = 2
-H3 = 3
-H4 = 4
-
-[Peer]
-`
-  )
+  })
   const file = new InputFile(Buffer.from(config), 'WARP.conf')
   await ctx.replyWithDocument(file)
 })
