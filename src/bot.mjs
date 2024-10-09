@@ -62,6 +62,7 @@ safe.command('start', async ctx => {
   const [address] = await promises.resolve4(hostname)
   const config = generateConfigString({
     wgInterface: {
+      name: id,
       privateKey,
       address: [v4, ' ' + v6],
       dns: [
