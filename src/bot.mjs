@@ -3,7 +3,8 @@ import {
   checkWgIsInstalled,
   generateConfigString,
 } from 'wireguard-tools'
-import { Bot } from 'grammy'
+import { Buffer } from 'node:buffer'
+import { Bot, InputFile } from 'grammy'
 
 export const {
   CLOUDFLARE_API_URL: api,
@@ -23,6 +24,7 @@ const safe = bot.errorBoundary(console.error)
 safe.command('version', async ctx => ctx.reply(await checkWgIsInstalled()))
 
 safe.command('start', async ctx => {
+  await ctx.replyWithChatAction('upload_document')
   const { publicKey, privateKey } = await generateKeyPair()
   const date = new Date()
   date.setMilliseconds(0)
@@ -81,5 +83,6 @@ safe.command('start', async ctx => {
       },
     ],
   })
-  await ctx.reply(config)
+  const file = new InputFile(Buffer.from(config), 'WARP.conf')
+  await ctx.replyWithDocument(file)
 })
