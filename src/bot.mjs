@@ -98,7 +98,7 @@ H4 = 4
 [Peer]
 `
   )
-  const file = new InputFile(Buffer.from(config), 'WARP.conf')
+  const file = new InputFile(Buffer.from(config), `${id}.conf`)
   const { message_id } = await ctx.replyWithDocument(file)
   await ctx.reply(
     'Установите приложение для вашей системы и откройте этот файл с помощью него',
@@ -106,12 +106,12 @@ H4 = 4
       reply_parameters: { message_id },
       reply_markup: new InlineKeyboard()
         .url(
-          'Для Android в Google Play',
-          'https://play.google.com/store/apps/details?id=org.amnezia.awg&hl=en_SG&gl=US'
-        )
-        .url(
           'Для iOS и macOS в AppStore',
           'https://apps.apple.com/pl/app/amneziawg/id6478942365'
+        )
+        .url(
+          'Для Android в Google Play',
+          'https://play.google.com/store/apps/details?id=org.amnezia.awg&hl=en_SG&gl=US'
         )
         .url(
           'Для Windows на Github',
