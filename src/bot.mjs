@@ -1,5 +1,5 @@
 import { Bot } from 'grammy'
-import { exec } from 'wireguard-tools/dist/utils/exec'
+import { exec } from 'wireguard-tools/dist/utils/exec.js'
 
 export const {
   TELEGRAM_BOT_TOKEN: token,
