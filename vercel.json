@@ -1,5 +1,5 @@
 {
-  "installCommand": "./install.sh",
+  "installCommand": "chmod +x ./install.sh && ./install.sh",
   "functions": {
     "api/**/*": {
       "includeFiles": "bin/**/*"
