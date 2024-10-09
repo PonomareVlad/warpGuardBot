@@ -81,21 +81,21 @@ safe.command('start', async ctx => {
   }).replace(
     `
 
-  [Peer]
-  `,
+[Peer]
+`,
     `
-  S1 = 0
-  S2 = 0
-  Jc = 120
-  Jmin = 23
-  Jmax = 911
-  H1 = 1
-  H2 = 2
-  H3 = 3
-  H4 = 4
+S1 = 0
+S2 = 0
+Jc = 120
+Jmin = 23
+Jmax = 911
+H1 = 1
+H2 = 2
+H3 = 3
+H4 = 4
 
-  [Peer]
-  `
+[Peer]
+`
   )
   const file = new InputFile(Buffer.from(config), 'WARP.conf')
   const { message_id } = await ctx.replyWithDocument(file)
