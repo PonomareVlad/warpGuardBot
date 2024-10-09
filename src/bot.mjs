@@ -82,4 +82,5 @@ safe.command('start', async ctx => {
   })
   const file = new InputFile(Buffer.from(config), 'WARP.conf')
   await ctx.replyWithDocument(file)
+  await ctx.reply('https://docs.amnezia.org/ru/documentation/amnezia-wg')
 })
