@@ -65,7 +65,7 @@ safe.command('start', async ctx => {
     headers,
   }).then(response => response.json())
   const { hostname, port } = new URL(`https://${host}`)
-  const [adress] = await promises.resolve4(hostname)
+  const [address] = await promises.resolve4(hostname)
   const config = generateConfigString({
     wgInterface: {
       privateKey,
@@ -76,7 +76,7 @@ safe.command('start', async ctx => {
       {
         publicKey: public_key,
         allowedIps: ['0.0.0.0/0', '::/0'],
-        endpoint: `${adress}:${port}`,
+        endpoint: `${address}:${port}`,
       },
     ],
   })
