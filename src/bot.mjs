@@ -69,18 +69,13 @@ safe.command('start', async ctx => {
   const config = generateConfigString({
     wgInterface: {
       privateKey,
-      address: [v4, v6],
-      dns: [
-        '1.1.1.1',
-        '2606:4700:4700::1111',
-        '1.0.0.1',
-        '2606:4700:4700::1001',
-      ],
+      address: [`${v4}/24`],
+      dns: ['1.1.1.1'],
     },
     peers: [
       {
         publicKey: public_key,
-        allowedIps: ['0.0.0.0/1', '128.0.0.0/1', '::/1', '8000::/1'],
+        allowedIps: ['0.0.0.0/0', '::/0'],
         endpoint: `${adress}:${port}`,
       },
     ],
