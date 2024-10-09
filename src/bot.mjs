@@ -86,7 +86,7 @@ safe.command('start', async ctx => {
           'https://play.google.com/store/apps/details?id=org.amnezia.awg&hl=en_SG&gl=US'
         )
         .url(
-          'Для IOS в AppStore',
+          'Для iOS в AppStore',
           'https://apps.apple.com/pl/app/amneziawg/id6478942365'
         )
         .url(
