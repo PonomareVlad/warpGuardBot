@@ -9,5 +9,5 @@ export const {
 export const bot = new Bot(token)
 const safe = bot.errorBoundary(console.error)
 
-safe.command('version', async ctx => ctx.reply(await exec('./src/wg -v')))
+safe.command('version', async ctx => ctx.reply(await exec('./bin/wg -v')))
 safe.on('message:text', ctx => ctx.reply(ctx.msg.text))

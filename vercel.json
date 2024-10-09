@@ -1,8 +1,8 @@
 {
-  "installCommand": "dnf install -y wireguard-tools && npm ci --omit=dev && cp /usr/bin/wg ./src/ && ls ./src/",
+  "installCommand": "install.sh",
   "functions": {
     "api/**/*": {
-      "includeFiles": "src/**/*"
+      "includeFiles": "bin/**/*"
     }
   }
 }
