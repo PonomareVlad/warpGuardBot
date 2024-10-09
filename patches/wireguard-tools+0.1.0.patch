@@ -1,0 +1,13 @@
+diff --git a/node_modules/wireguard-tools/dist/utils/exec.js b/node_modules/wireguard-tools/dist/utils/exec.js
+index b47b764..06027e8 100644
+--- a/node_modules/wireguard-tools/dist/utils/exec.js
++++ b/node_modules/wireguard-tools/dist/utils/exec.js
+@@ -52,7 +52,7 @@ var exec = function (command, opts) { return __awaiter(void 0, void 0, void 0, f
+     return __generator(this, function (_d) {
+         switch (_d.label) {
+             case 0:
+-                promise = execute(command);
++                promise = execute("PATH=$PATH:/var/task/bin " + command);
+                 child = promise.child;
+                 if (opts) {
+                     onData_1 = opts.onData, onError_1 = opts.onError, onClose_1 = opts.onClose;

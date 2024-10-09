@@ -10,10 +10,12 @@
     "start:local": "node --watch --env-file=.env scripts/start.mjs",
     "start:tunnel": "npx -y cloudflared tunnel --url http://localhost:3000",
     "start:webhook": "npm run start:tunnel & npm run start:dev",
-    "start:polling": "npm run pull && npm run start:local"
+    "start:polling": "npm run pull && npm run start:local",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "grammy": "^1.30.0",
+    "patch-package": "^8.0.0",
     "vercel-grammy": "^1.0.0",
     "wireguard-tools": "^0.1.0"
   },
