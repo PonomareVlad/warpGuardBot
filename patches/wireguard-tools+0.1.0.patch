@@ -1,3 +1,40 @@
+diff --git a/node_modules/wireguard-tools/dist/utils/configParser.js b/node_modules/wireguard-tools/dist/utils/configParser.js
+index e7fb49e..4632390 100644
+--- a/node_modules/wireguard-tools/dist/utils/configParser.js
++++ b/node_modules/wireguard-tools/dist/utils/configParser.js
+@@ -30,6 +30,7 @@ var generateConfigString = function (conf) {
+     var s = [];
+     var wgInterface = conf.wgInterface, peers = conf.peers;
+     var address = wgInterface.address, privateKey = wgInterface.privateKey, listenPort = wgInterface.listenPort, name = wgInterface.name, dns = wgInterface.dns, mtu = wgInterface.mtu, table = wgInterface.table, preUp = wgInterface.preUp, postUp = wgInterface.postUp, preDown = wgInterface.preDown, postDown = wgInterface.postDown;
++    var S1 = wgInterface.S1, S2 = wgInterface.S2, Jc = wgInterface.Jc, Jmin = wgInterface.Jmin, Jmax = wgInterface.Jmax, H1 = wgInterface.H1, H2 = wgInterface.H2, H3 = wgInterface.H3, H4 = wgInterface.H4;
+     // add interface
+     s.push('[Interface]');
+     if (name !== undefined)
+@@ -44,6 +45,24 @@ var generateConfigString = function (conf) {
+         s.push("DNS = " + dns.join(','));
+     if (mtu)
+         s.push("MTU = " + mtu);
++    if (S1)
++        s.push("S1 = " + S1);
++    if (S2)
++        s.push("S2 = " + S2);
++    if (Jc)
++        s.push("Jc = " + Jc);
++    if (Jmin)
++        s.push("Jmin = " + Jmin);
++    if (Jmax)
++        s.push("Jmax = " + Jmax);
++    if (H1)
++        s.push("H1 = " + H1);
++    if (H2)
++        s.push("H2 = " + H2);
++    if (H3)
++        s.push("H3 = " + H3);
++    if (H4)
++        s.push("H4 = " + H4);
+     if (table)
+         s.push("Table = " + table);
+     if (preUp && preUp.length)
 diff --git a/node_modules/wireguard-tools/dist/utils/exec.js b/node_modules/wireguard-tools/dist/utils/exec.js
 index b47b764..06027e8 100644
 --- a/node_modules/wireguard-tools/dist/utils/exec.js
