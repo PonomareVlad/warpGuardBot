@@ -14,23 +14,23 @@ index e7fb49e..4632390 100644
          s.push("DNS = " + dns.join(','));
      if (mtu)
          s.push("MTU = " + mtu);
-+    if (S1)
++    if (Number.isFinite(S1))
 +        s.push("S1 = " + S1);
-+    if (S2)
++    if (Number.isFinite(S2))
 +        s.push("S2 = " + S2);
-+    if (Jc)
++    if (Number.isFinite(Jc))
 +        s.push("Jc = " + Jc);
-+    if (Jmin)
++    if (Number.isFinite(Jmin))
 +        s.push("Jmin = " + Jmin);
-+    if (Jmax)
++    if (Number.isFinite(Jmax))
 +        s.push("Jmax = " + Jmax);
-+    if (H1)
++    if (Number.isFinite(H1))
 +        s.push("H1 = " + H1);
-+    if (H2)
++    if (Number.isFinite(H2))
 +        s.push("H2 = " + H2);
-+    if (H3)
++    if (Number.isFinite(H3))
 +        s.push("H3 = " + H3);
-+    if (H4)
++    if (Number.isFinite(H4))
 +        s.push("H4 = " + H4);
      if (table)
          s.push("Table = " + table);
