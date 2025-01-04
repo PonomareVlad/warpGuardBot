@@ -14,7 +14,7 @@ const safe = bot.errorBoundary(console.error)
 safe.command('start', async ctx => {
   await ctx.replyWithChatAction('upload_document')
   const config = await makeConfig()
-  const file = new InputFile(Buffer.from(config), `Cloudflare WARP.conf`)
+  const file = new InputFile(Buffer.from(config), `Cloudflare.conf`)
   const { message_id } = await ctx.replyWithDocument(file)
   await ctx.reply(
     'Установите приложение для вашей системы и откройте этот файл с помощью него',
